@@ -1,7 +1,7 @@
 <?php
 session_start();
 require 'dbcon.php';
- ?>
+?>
 <!doctype html>
 <html lang="en">
 
@@ -20,7 +20,7 @@ require 'dbcon.php';
     <!-- Font Awesome -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="assets/css/font-awesome.css">
-    
+
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="css/styles.css">
@@ -28,7 +28,7 @@ require 'dbcon.php';
     folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
     <link href="assets/css/dataTables.bootstrap.min.css" rel="stylesheet">
-    
+
 </head>
 
 <body>
@@ -38,7 +38,7 @@ require 'dbcon.php';
   overflow: hidden;
   margin-top: 18rem;
   margin-right: 10rem;">
-        
+
         <!-- Top bar -->
         <div class="top_navbar">
             <!-- logo -->
@@ -52,12 +52,12 @@ require 'dbcon.php';
             </div>
 
         </div>
-        
+
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="sidebar_inner">
                 <ul>
-                    
+
                     <li>
                         <a href="home.php">
                             <span class="icon"><i class="fa fa-user" aria-hidden="true"></i></span>
@@ -86,122 +86,125 @@ require 'dbcon.php';
             </div>
         </div>
 
-        
-        
-        
-        
+
+
+
+
         <script type="text/javascript">
             var li_items = document.querySelectorAll(".sidebar ul li");
             var hamburger = document.querySelector(".hamburger");
             var wrapper = document.querySelector(".wrapper");
-            
-            
-            
-            
+
+
+
+
             li_items.forEach((li_item) => {
                 li_item.addEventListener("mouseenter", () => {
-                    
+
                     li_item.closest(".wrapper").classList.remove("hover_collapse");
-                    
+
                 })
             })
             hamburger.addEventListener("click", () => {
-                
+
                 hamburger.closest(".wrapper").classList.toggle("hover_collapse");
             })
-            
+
         </script>
 
 
 
 
-<div class="content-wrapper">
+        <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
                     <small>Welcome Administrator!</small>
                 </h1>
             </section>
-            
+
             <!-- Main content -->
             <section class="content">
-                
+
                 <!-- Default box -->
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Home</h3>
                         <div class="box-tools pull-right">
                             <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                            title="Collapse"><i class="fa fa-minus"></i></button>
+                                title="Collapse"><i class="fa fa-minus"></i></button>
                             <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip"
-                            title="Remove"><i class="fa fa-times"></i></button>
+                                title="Remove"><i class="fa fa-times"></i></button>
                         </div>
                     </div>
                     <div class="box-body">
                         <!-- Start creating your amazing application! -->
-                        <button id="newLaun" type="button" class="btn btn-success btn-sm">
-                            New Laundry
+                        <button id="newLaundry" type="button" class="btn btn-success btn-sm">
+                       
+                        <a href="customer-create.php?id=<?= $customer['C_id']; ?>"
+                        class="btn-success btn-sm">New Laundry
+                        </a>
+                       
                             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                         </button>
-                        
+
                         <button id="claim" type="button" class="btn btn-primary btn-sm">
                             Claim
                             <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
                         </button>
-                        
-                        <button id="delLaun" type="button" class="btn btn-danger btn-sm">
-                            Delete
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                        </button>
                         <div id="table-laundry">
-                        <div class="card-body">
+                            <div class="card-body">
 
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Customer ID</th>
-            <th>Customer Name</th>
-            <th>Phone No</th>
-            <th>Address</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php 
-            $query = "SELECT * FROM customer";
-            $query_run = mysqli_query($con, $query);
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Customer ID</th>
+                                            <th>Customer Name</th>
+                                            <th>Phone No</th>
+                                            <th>Address</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $query = "SELECT * FROM customer";
+                                        $query_run = mysqli_query($con, $query);
 
-            if(mysqli_num_rows($query_run) > 0)
-            {
-                foreach($query_run as $customer)
-                {
-                    ?>
-                    <tr>
-                        <td><?= $customer['C_id']; ?></td>
-                        <td><?= $customer['C_name']; ?></td>
-                        <td><?= $customer['Ph_no']; ?></td>
-                        <td><?= $customer['Address']; ?></td>
-                        <td>
-                            <a href="customer-view.php?id=<?= $customer['C_id']; ?>" class="btn btn-info btn-sm">View</a>
-                            <a href="student-edit.php?id=<?= $customer['C_id']; ?>" class="btn btn-success btn-sm">Edit</a>
-                            <form action="code.php" method="POST" class="d-inline">
-                                <button type="submit" name="delete_student" value="<?=$customer['C_id'];?>" class="btn btn-danger btn-sm">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <?php
-                }
-            }
-            else
-            {
-                echo "<h5> No Record Found </h5>";
-            }
-        ?>
-        
-    </tbody>
-</table>
+                                        if (mysqli_num_rows($query_run) > 0) {
+                                            foreach ($query_run as $customer) {
+                                                ?>
+                                                <tr>
+                                                    <td><?= $customer['C_id']; ?></td>
+                                                    <td>
+                                                        <?= $customer['C_name']; ?>
+                                                    </td>
+                                                    <td><?= $customer['Ph_no']; ?></td>
+                                                    <td>
+                                                        <?= $customer['Address']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <a href="customer-view.php?id=<?= $customer['C_id']; ?>"
+                                                            class="btn btn-info btn-sm">View</a>
+                                                        <a href="customer-create.php?id=<?= $customer['C_id']; ?>"
+                                                            class="btn btn-success btn-sm">Edit</a>
+                                                        <form action="code.php" method="POST" class="d-inline">
+                                                            <button type="submit" name="delete_customer"
+                                                                value="<?= $customer['C_id']; ?>"
+                                                                class="btn-danger btn-sm">Delete</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                            }
+                                        } else {
+                                            echo "<h5> No Record Found </h5>";
+                                        }
+                                        ?>
 
-</div>
+                                    </tbody>
+                                </table>
+
+                            </div>
                         </div>
                     </div>
                     <!-- /.box-body -->
