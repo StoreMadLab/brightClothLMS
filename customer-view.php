@@ -28,13 +28,11 @@ require 'dbcon.php';
                         </h4>
                     </div>
                     <div class="card-body">
-
                         <?php
-                        if (isset($_GET['C_id'])) {
-                            $customer_id = mysqli_real_escape_string($con, $_GET['C_id']);
+                        if (isset($_GET['id'])) {
+                            $customer_id = mysqli_real_escape_string($con, $_GET['id']);
                             $query = "SELECT * FROM customer WHERE C_id='$customer_id'";
                             $query_run = mysqli_query($con, $query);
-
                             if (mysqli_num_rows($query_run) > 0) {
                                 $customer = mysqli_fetch_array($query_run);
                                 ?>
