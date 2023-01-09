@@ -1,0 +1,124 @@
+*{
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+   }
+   
+   body{
+    background: #F1F6F5;
+   }
+   .top_navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: #4B56D2;
+    box-shadow: 1px 0 2px rgba(0,0,0,0.125);
+    display: flex;
+    align-items: center;
+   }
+   .top_navbar .logo{
+    width: 250px;
+    font-size: 25px;
+    font-weight: 700;
+    padding: 0 25px;
+    color: #2D033B;
+    letter-spacing: 2px;
+    border-right: 1px solid #f5f5f5;
+   }
+   .top_navbar .menu{
+    width: calc(100% - 250px);
+    padding: 0 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   }
+   
+   .top_navbar .hamburger{
+    font-size: 25px;
+    cursor: pointer;
+    color: white;
+   }
+   
+   .top_navbar .hamburger:hover{
+    color: #007dc3;
+   }
+   .sidebar{
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 15.6rem;
+    height: 100%;
+    background: #82C3EC;
+   }
+   .sidebar ul li a{
+    display: block;
+    padding: 16px 25px;
+    color: #0e94d4;
+   }
+   
+   .sidebar ul li a .icon{
+    font-size: 18px;
+    color: black;
+    vertical-align: middle;
+   }
+   
+   .sidebar ul li a .text{
+    margin-left: 19px;
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+   }
+   
+   .sidebar ul li a:hover{
+    background: #0e94d4;
+    color: #fff;
+   }
+   .hover_collapse .sidebar{
+    width: 70px;
+   }
+   
+   .hover_collapse .sidebar ul li a .text{
+    display: none;
+   }
+   .top_navbar .menu{
+    width: calc(100% - 250px);
+    padding: 0 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   }
+   
+   .top_navbar .hamburger{
+    font-size: 25px;
+    cursor: pointer;
+    color: white;
+   }
+   
+   .top_navbar .hamburger:hover{
+    color: #007dc3;
+   }
+   
+ 
+ .hover_collapse .sidebar {
+    width: 7rem;
+ }
+ .sidebar ul li a {
+    display: block;
+    padding: 16px 25px;
+    text-decoration: none;
+ }
+ ol, ul {
+    padding-left: 0;
+ }
+ .admin {
+    color: #fff;
+    letter-spacing: 2px;
+    font-size: larger;
+    font-weight: bold;
+ }

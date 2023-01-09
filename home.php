@@ -1,118 +1,214 @@
-<!DOCTYPE html>
+<?php
+session_start();
+require 'dbcon.php';
+ ?>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-
-    <title>LMS-Home</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Cutomer CRUD</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
+    <!-- Font Awesome -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
+    
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+    folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+    <link href="assets/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row flex-nowrap">
-            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-info bg-darken-lg">
-                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                    <a href="#"
-                        class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                        <span class="fs-5 d-none d-sm-inline"><strong>Laundry Management System</strong></span>
-                    </a>
-                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
-                        id="menu">
-                        <li class="nav-item">
-                            <a href="home.php" class="nav-link align-middle px-0">
-                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline"><button
-                                        type="button" class="btn btn-secondary">Home</button></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="laundry-type.php" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline"><button
-                                        type="button" class="btn btn-secondary">Type</button></span></a>
-                        </li>
-                        <li>
-                            <a href="Report.php" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline"><button
-                                        type="button" class="btn btn-secondary">Report</button></span></a>
-                        </li>
-                        <li>
-                            <a href="index.php" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline"><button
-                                        type="button" class="btn btn-secondary">Log-Out</button></span></a>
-                        </li>
-                    </ul>
-                    <hr>
+    <div class="wrapper" style="  width: 90vw;
+  min-height: 100%;
+  position: fixed;
+  overflow: hidden;
+  margin-top: 18rem;
+  margin-right: 10rem;">
+        
+        <!-- Top bar -->
+        <div class="top_navbar">
+            <!-- logo -->
+            <div class="logo"><strong>LMS</strong></div>
+            <!-- menu button -->
+            <div class="menu">
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
                 </div>
+                <span class="admin">Welcome Admin</span>
             </div>
-            <div class="col py-3">
-            <button type="button" class="btn btn-primary">New Laundry</button>
-            <button type="button" class="btn btn-success">Claim</button>
-            <button type="button" class="btn btn-danger">Delete</button><br>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">.</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Priority</th>
-                            <th scope="col">Weight</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Date-Received</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row"><input type="checkbox"></th>
-                            <td>Mark</td>
-                            <td>1</td>
-                            <td>12</td>
-                            <td>Blanket</td>
-                            <td>31-12-2022</td>
-                            <td>240</td>
-                            <td><button onclick="editLaundry('26')" type="button" class="btn btn-warning btn-xs">
-                                    Edit
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                </button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><input type="checkbox"></th>
-                            <td>Harry</td>
-                            <td>2</td>
-                            <td>10</td>
-                            <td>Blanket</td>
-                            <td>02-01-2023</td>
-                            <td>200</td>
-                            <td><button onclick="editLaundry('26')" type="button" class="btn btn-warning btn-xs">
-                                    Edit
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                </button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><input type="checkbox"></th>
-                            <td>Cam</td>
-                            <td>1</td>
-                            <td>6</td>
-                            <td>Clothes</td>
-                            <td>31-12-2022</td>
-                            <td>60</td>
-                            <td><button onclick="editLaundry('26')" type="button" class="btn btn-warning btn-xs">
-                                    Edit
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                </button></td>
-                        </tr>
-                </table>
 
-                <br>
-                <br>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar_inner">
+                <ul>
+                    
+                    <li>
+                        <a href="home.php">
+                            <span class="icon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                            <span class="text"><strong>Home</strong></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="laundry-type.php">
+                            <span class="icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+                            <span class="text"><strong>Laundry Type</strong></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="report.php">
+                            <span class="icon"><i class="fa fa-industry" aria-hidden="true"></i></span>
+                            <span class="text"><strong>Report</strong></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="logout.php">
+                            <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
+                            <span class="text"><strong>Logout</strong></span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
-</body>
 
-</html>
+        
+        
+        
+        
+        <script type="text/javascript">
+            var li_items = document.querySelectorAll(".sidebar ul li");
+            var hamburger = document.querySelector(".hamburger");
+            var wrapper = document.querySelector(".wrapper");
+            
+            
+            
+            
+            li_items.forEach((li_item) => {
+                li_item.addEventListener("mouseenter", () => {
+                    
+                    li_item.closest(".wrapper").classList.remove("hover_collapse");
+                    
+                })
+            })
+            hamburger.addEventListener("click", () => {
+                
+                hamburger.closest(".wrapper").classList.toggle("hover_collapse");
+            })
+            
+        </script>
+
+
+
+
+<div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    <small>Welcome Administrator!</small>
+                </h1>
+            </section>
+            
+            <!-- Main content -->
+            <section class="content">
+                
+                <!-- Default box -->
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Home</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                            title="Collapse"><i class="fa fa-minus"></i></button>
+                            <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip"
+                            title="Remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <!-- Start creating your amazing application! -->
+                        <button id="newLaun" type="button" class="btn btn-success btn-sm">
+                            New Laundry
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                        </button>
+                        
+                        <button id="claim" type="button" class="btn btn-primary btn-sm">
+                            Claim
+                            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                        </button>
+                        
+                        <button id="delLaun" type="button" class="btn btn-danger btn-sm">
+                            Delete
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </button>
+                        <div id="table-laundry">
+                        <div class="card-body">
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Customer ID</th>
+            <th>Customer Name</th>
+            <th>Phone No</th>
+            <th>Address</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php 
+            $query = "SELECT * FROM customer";
+            $query_run = mysqli_query($con, $query);
+
+            if(mysqli_num_rows($query_run) > 0)
+            {
+                foreach($query_run as $customer)
+                {
+                    ?>
+                    <tr>
+                        <td><?= $customer['C_id']; ?></td>
+                        <td><?= $customer['C_name']; ?></td>
+                        <td><?= $customer['Ph_no']; ?></td>
+                        <td><?= $customer['Address']; ?></td>
+                        <td>
+                            <a href="customer-view.php?id=<?= $customer['C_id']; ?>" class="btn btn-info btn-sm">View</a>
+                            <a href="student-edit.php?id=<?= $customer['C_id']; ?>" class="btn btn-success btn-sm">Edit</a>
+                            <form action="code.php" method="POST" class="d-inline">
+                                <button type="submit" name="delete_student" value="<?=$customer['C_id'];?>" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <?php
+                }
+            }
+            else
+            {
+                echo "<h5> No Record Found </h5>";
+            }
+        ?>
+        
+    </tbody>
+</table>
+
+</div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <!-- Footer -->
+                    </div><!-- /.box-footer-->
+                </div><!-- /.box -->
+
+            </section><!-- /.content -->
+        </div><!-- /.content-wrapper -->
