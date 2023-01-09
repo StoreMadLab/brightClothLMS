@@ -14,15 +14,61 @@
 </head>
 
 <body>
-<div class="d-flex flex-column flex-shrink-0 bg-light w-25 p-2" style="width: 100px;">
-    <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-        <li class="nav-item"> <a href="#" class="nav-link active py-3 border-bottom"> <i class="fa fa-home"></i> <small>Home</small> </a> </li>
-        <li> <a href="#" class="nav-link py-3 border-bottom"> <i class="fa fa-dashboard"></i> <small>Laundry-Type</small> </a> </li>
-        <li> <a href="#" class="nav-link py-3 border-bottom"> <i class="fa fa-first-order"></i> <small>Report</small> </a> </li>
-        <li> <a href="#" class="nav-link py-3 border-bottom"> <i class="fa fa-cog"></i> <small>Log-Out</small> </a> </li>
-    </ul>
-</div>
+<div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-info bg-darken-lg">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                    <a href="#"
+                        class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                        <span class="fs-5 d-none d-sm-inline"><strong>Laundry Management System</strong></span>
+                    </a>
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+                        id="menu">
+                        <li class="nav-item">
+                            <a href="home.php" class="nav-link align-middle px-0">
+                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline"><button
+                                        type="button" class="btn btn-secondary">Home</button></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="laundry-type.php" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline"><button
+                                        type="button" class="btn btn-secondary">Type</button></span></a>
+                        </li>
+                        <li>
+                            <a href="Report.php" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline"><button
+                                        type="button" class="btn btn-secondary">Report</button></span></a>
+                        </li>
+                        <li>
+                            <a href="index.php" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline"><button
+                                        type="button" class="btn btn-secondary">Log-Out</button></span></a>
+                        </li>
+                    </ul>
+                    <hr>
+                </div>
+            </div>
+            <div class="col py-3">
+            <button type="button" class="btn btn-success">New Type</button><br>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Laundry Received</th>
+                            <th scope="col">Date Paid</th>
+                            <th scope="col">Amount</th>
+                        </tr>
+                    </thead>
 
+
+
+        
+
+
+        </div>
+</div>
 </body>
 
 </html>
