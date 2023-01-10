@@ -73,7 +73,7 @@ if(isset($_POST['save_customer']))
 }
 
 
-if(isset($_POST['update_l_type']))
+if(isset($_POST['update_laundry_type']))
 {
     $id = mysqli_real_escape_string($con, $_POST['l_type_id']);
     $name = mysqli_real_escape_string($con, $_POST['l_type_desc']);
