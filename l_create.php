@@ -43,20 +43,20 @@ require 'dbcon.php';
                                 $customer = mysqli_fetch_array($query_run);
                                 ?>
                                 <form action="code.php" method="POST">
-                                    <input type="hidden" name="laundry_id" value="<?= $customer['l_type_id']; ?>">
+                                    <input type="hidden" name="l_type_id" value="<?= $customer['l_type_id']; ?>">
 
                                     <div class="mb-3">
                                         <label>Laundry Type</label>
-                                        <input type="text" name="laundry_name" value="<?= $customer['l_type_desc']; ?>"
+                                        <input type="text" name="l_type_desc" value="<?= $customer['l_type_desc']; ?>"
                                             class="form-control">
                                     </div>
                                     <div class="mb-3">
                                         <label>Laundry Type Price</label>
-                                        <input type="text" name="laundry_price" value="<?= $customer['l_type_price']; ?>"
+                                        <input type="text" name="l_type_price" value="<?= $customer['l_type_price']; ?>"
                                             class="form-control">
                                     </div>
                                     <div class="mb-3">
-                                        <button type="submit" name="update_customer" class="btn btn-primary">
+                                        <button type="submit" name="update_laundry_type" class="btn btn-primary">
                                             Update Laundry Type
                                         </button>
                                     </div>
