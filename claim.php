@@ -73,30 +73,29 @@ if(isset($_POST['save_customer']))
 }
 
 
-if(isset($_POST['update_l_type']))
+if(isset($_POST['claim_customer']))
 {
-    $id = mysqli_real_escape_string($con, $_POST['l_type_id']);
-    $name = mysqli_real_escape_string($con, $_POST['l_type_desc']);
-    $price = mysqli_real_escape_string($con, $_POST['l_type_price']);
+    $customer_id = mysqli_real_escape_string($con, $_POST['delete_customer']);
 
-    $query = "UPDATE customer SET l_type_desc='$name', l_type_price='$price' WHERE l_type_id='$id' ";
+
+
+
+    
+    $query = "DELETE FROM customer WHERE C_id='$customer_id' ";
     $query_run = mysqli_query($con, $query);
 
     if($query_run)
     {
-        $_SESSION['message'] = "Laundry Type Updated Successfully";
-        header("Location: l_create.php");
+        $_SESSION['message'] = "Customer Claimed Successfully";
+        header("Location: home.php");
         exit(0);
     }
     else
     {
-        $_SESSION['message'] = "Laundry Type Not Updated";
-        header("Location: l_create.php");
+        $_SESSION['message'] = "Customer Not Claimed";
+        header("Location: home.php");
         exit(0);
     }
-
 }
-
-
 
 ?>

@@ -13,7 +13,7 @@ require 'dbcon.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Cutomer CRUD</title>
+    <title>AP_LMS</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
@@ -140,17 +140,12 @@ require 'dbcon.php';
                     <div class="box-body">
                         <!-- Start creating your amazing application! -->
                         <button id="newLaundry" type="button" class="btn btn-success btn-sm">
-                       
-                        <a href="customer-create.php?id=<?= $customer['C_id']; ?>"
-                        class="btn-success btn-sm">New Laundry
-                        </a>
-                       
-                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                        </button>
 
-                        <button id="claim" type="button" class="btn btn-primary btn-sm">
-                            Claim
-                            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                            <a href="customer-create.php?id=<?= $customer['C_id']; ?>" class="btn-success btn-sm">New
+                                Laundry
+                            </a>
+
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                         </button>
                         <div id="table-laundry">
                             <div class="card-body">
@@ -187,6 +182,13 @@ require 'dbcon.php';
                                                             class="btn btn-info btn-sm">View</a>
                                                         <a href="customer-create.php?id=<?= $customer['C_id']; ?>"
                                                             class="btn btn-success btn-sm">Edit</a>
+                                                            <form action="claim.php" method="POST" class="d-inline">
+                                                            <button type="submit" name="delete_customer"
+                                                                value="<?= $customer['C_id']; ?>"
+                                                                class="btn-primary btn-sm">Claim
+                                                            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                                                        </button>
+                                            </form>
                                                         <form action="code.php" method="POST" class="d-inline">
                                                             <button type="submit" name="delete_customer"
                                                                 value="<?= $customer['C_id']; ?>"

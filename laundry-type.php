@@ -1,74 +1,201 @@
-<!DOCTYPE html>
+<?php
+session_start();
+require 'dbcon.php';
+?>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>LMS-HOME</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>AP_LMS</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
+    <!-- Font Awesome -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+    folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+    <link href="assets/css/dataTables.bootstrap.min.css" rel="stylesheet">
+
 </head>
 
 <body>
-<div class="container-fluid">
-        <div class="row flex-nowrap">
-            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-info bg-darken-lg">
-                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                    <a href="#"
-                        class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                        <span class="fs-5 d-none d-sm-inline"><strong>Laundry Management System</strong></span>
-                    </a>
-                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
-                        id="menu">
-                        <li class="nav-item">
-                            <a href="home.php" class="nav-link align-middle px-0">
-                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline"><button
-                                        type="button" class="btn btn-secondary">Home</button></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="laundry-type.php" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline"><button
-                                        type="button" class="btn btn-secondary">Type</button></span></a>
-                        </li>
-                        <li>
-                            <a href="Report.php" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline"><button
-                                        type="button" class="btn btn-secondary">Report</button></span></a>
-                        </li>
-                        <li>
-                            <a href="index.php" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline"><button
-                                        type="button" class="btn btn-secondary">Log-Out</button></span></a>
-                        </li>
-                    </ul>
-                    <hr>
+    <div class="wrapper" style="  width: 90vw;
+  min-height: 100%;
+  position: fixed;
+  overflow: hidden;
+  margin-top: 18rem;
+  margin-right: 10rem;">
+
+        <!-- Top bar -->
+        <div class="top_navbar">
+            <!-- logo -->
+            <div class="logo"><strong>LMS</strong></div>
+            <!-- menu button -->
+            <div class="menu">
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
                 </div>
+                <span class="admin">Welcome Admin</span>
             </div>
 
-
-            <div class="col py-3">
-            <button type="button" class="btn btn-success">New Type</button><br>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Laundry Type Decription</th>
-                            <th scope="col">Price/Kg</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-
-
         </div>
-</div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar_inner">
+                <ul>
+
+                    <li>
+                        <a href="home.php">
+                            <span class="icon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                            <span class="text"><strong>Home</strong></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="laundry-type.php">
+                            <span class="icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+                            <span class="text"><strong>Laundry Type</strong></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="report.php">
+                            <span class="icon"><i class="fa fa-industry" aria-hidden="true"></i></span>
+                            <span class="text"><strong>Report</strong></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="logout.php">
+                            <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
+                            <span class="text"><strong>Logout</strong></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
 
 
-</body>
 
-</html>
+        <script type="text/javascript">
+            var li_items = document.querySelectorAll(".sidebar ul li");
+            var hamburger = document.querySelector(".hamburger");
+            var wrapper = document.querySelector(".wrapper");
+
+
+
+
+            li_items.forEach((li_item) => {
+                li_item.addEventListener("mouseenter", () => {
+
+                    li_item.closest(".wrapper").classList.remove("hover_collapse");
+
+                })
+            })
+            hamburger.addEventListener("click", () => {
+
+                hamburger.closest(".wrapper").classList.toggle("hover_collapse");
+            })
+
+        </script>
+
+
+
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    <small>Welcome Administrator!</small>
+                </h1>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <!-- Default box -->
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Home</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                                title="Collapse"><i class="fa fa-minus"></i></button>
+                            <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip"
+                                title="Remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <!-- Start creating your amazing application! -->
+                        <button id="newLaundry" type="button" class="btn btn-success btn-sm">
+
+                            <a href="customer-create.php?id=<?= $customer['C_id']; ?>" class="btn-success btn-sm">New
+                                Type
+                            </a>
+
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                        </button>
+                        <div id="table-laundry">
+                            <div class="card-body">
+
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Laundry Type Description</th>
+                                            <th>Price/Kg</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $query = "SELECT * FROM l_type";
+                                        $query_run = mysqli_query($con, $query);
+
+                                        if (mysqli_num_rows($query_run) > 0) {
+                                            foreach ($query_run as $customer) {
+                                                ?>
+                                                <tr>
+                                                    <!-- <td><?= $customer['l_type_id']; ?></td> -->
+                                                    <td>
+                                                        <?= $customer['l_type_desc']; ?>
+                                                    </td>
+                                                    <td><?= $customer['l_type_price']; ?></td>
+                                                    
+                                                    <td>                                                        
+                                                        <a href="l_create.php?id=<?= $customer['l_type_id']; ?>"
+                                                            class="btn btn-success btn-sm">Edit</a>                                                            
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                            }
+                                        } else {
+                                            echo "<h5> No Record Found </h5>";
+                                        }
+                                        ?>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <!-- Footer -->
+                    </div><!-- /.box-footer-->
+                </div><!-- /.box -->
+
+            </section><!-- /.content -->
+        </div><!-- /.content-wrapper -->
