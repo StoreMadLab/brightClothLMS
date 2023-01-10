@@ -79,7 +79,7 @@ if(isset($_POST['update_l_type']))
     $name = mysqli_real_escape_string($con, $_POST['l_type_desc']);
     $price = mysqli_real_escape_string($con, $_POST['l_type_price']);
 
-    $query = "UPDATE customer SET l_type_desc='$name', l_type_price='$price' WHERE l_type_id='$id' ";
+    $query = "UPDATE l_type SET l_type_desc='$name', l_type_price='$price' WHERE l_type_id='$id' ";
     $query_run = mysqli_query($con, $query);
 
     if($query_run)
