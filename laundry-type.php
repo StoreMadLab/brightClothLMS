@@ -65,6 +65,12 @@ require 'dbcon.php';
                         </a>
                     </li>
                     <li>
+                        <a href="home.php">
+                            <span class="icon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                            <span class="text"><strong>Customer Details</strong></span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="laundry-type.php">
                             <span class="icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
                             <span class="text"><strong>Laundry Type</strong></span>
