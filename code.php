@@ -97,6 +97,28 @@ if(isset($_POST['update_laundry_type']))
 
 }
 
+if(isset($_POST['save_laundry']))
+{
+    $ids = mysqli_real_escape_string($con, $_POST['ID']);
+    $type = mysqli_real_escape_string($con, $_POST['type']);
+    $qty = mysqli_real_escape_string($con, $_POST['qty']);
+    $date = mysqli_real_escape_string($con, $_POST['date']);
 
+    $query = "INSERT INTO sales (l_type_id, c_id, qty, date_rcv) VALUES ('$type','$ids','$qty','$date')";
+
+    $query_run = mysqli_query($con, $query);
+    if($query_run)
+    {
+        $_SESSION['message'] = "Customer Created Successfully";
+        header("Location: customer-create.php");
+        exit(0);
+    }
+    else
+    {
+        $_SESSION['message'] = "Customer Not Created";
+        header("Location: customer-create.php");
+        exit(0);
+    }
+}
 
 ?>

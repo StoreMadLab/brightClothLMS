@@ -28,7 +28,7 @@ require 'dbcon.php';
                 <div class="card">
                     <div class="card-header">
                         <h4>Customer Edit
-                            <a href="home.php" class="btn btn-danger float-end">BACK</a>
+                            <a href="l_home.php" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -40,24 +40,20 @@ require 'dbcon.php';
                                         <input type="text" name="ID" class="form-control">
                                     </div>
                                     <div class="mb-3">
-                                        <label>Customer Name</label>
-                                        <input type="text" name="name" class="form-control">
-                                    </div>
-                                    <div class="mb-3">
                                         <label>Laundry Type</label>
-                                        <input type="text" name="phone" class="form-control">
+                                        <input type="text" name="type" class="form-control">
                                     </div>
                                     <div class="mb-3">
                                         <label>Quantity</label>
-                                        <input type="text" name="address" class="form-control">
+                                        <input type="text" name="qty" class="form-control">
                                     </div>
                                     <div class="mb-3">
                                         <label>Date Received</label>
-                                        <input type="text" name="address" class="form-control">
+                                        <input type="date" name="date" class="form-control">
                                     </div>
                                     
                                     <div class="mb-3">
-                                        <button type="submit" name="save_customer" class="btn btn-primary">
+                                        <button type="submit" name="save_laundry" class="btn btn-primary">
                                             Update customer
                                         </button>
                                     </div>

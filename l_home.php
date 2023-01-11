@@ -145,7 +145,7 @@ require 'dbcon.php';
                         <!-- Start creating your amazing application! -->
                         <button id="newLaundry" type="button" class="btn btn-success btn-sm">
 
-                            <a href="customer-create.php?id=<?= $customer['C_id']; ?>" class="btn-success btn-sm">New
+                            <a href="customer-new-laundry.php" class="btn-success btn-sm">New
                                 Laundry
                             </a>
 
@@ -169,7 +169,7 @@ require 'dbcon.php';
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $query = "SELECT c.C_id, c.C_name, l.l_type_desc, s.qty, s.date_rcv, (l.l_type_price*s.qty)as amount  FROM customer c, sales s, l_type l WHERE c.C_id = s.c_id AND l.l_type_id = s.l_type_id";
+                                        $query = "select * from cla";
                                         $query_run = mysqli_query($con, $query);
 
                                         if (mysqli_num_rows($query_run) > 0) {
