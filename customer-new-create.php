@@ -33,32 +33,29 @@ require 'dbcon.php';
                     </div>
                     <div class="card-body">
 
+                     <form action="code.php" method="POST">
 
-                        <form action="code.php" method="POST">
-                            <input type="hidden" name="customer_id" value="<?= $customer['C_id']; ?>">
+                                    <div class="mb-3">
+                                        <label>Customer Name</label>
+                                        <input type="text" name="name" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Customer Phone</label>
+                                        <input type="text" name="phone" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Customer Address</label>
+                                        <input type="text" name="address" class="form-control">
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <button type="submit" name="save_customer" class="btn btn-primary">
+                                            Update customer
+                                        </button>
+                                    </div>
 
-                            <div class="mb-3">
-                                <label>Customer Name</label>
-                                <input type="text" name="name" value="<?= $customer['C_name']; ?>" class="form-control">
-                            </div>
-                            <div class="mb-3">
-                                <label>Customer Phone</label>
-                                <input type="text" name="phone" value="<?= $customer['Ph_no']; ?>" class="form-control">
-                            </div>
-                            <div class="mb-3">
-                                <label>Customer Address</label>
-                                <input type="text" name="address" value="<?= $customer['Address']; ?>"
-                                    class="form-control">
-                            </div>
-
-                            <div class="mb-3">
-                                <button type="submit" name="save_customer" class="btn btn-primary">
-                                    Created New Customer
-                                </button>
-                            </div>
-
-                        </form>
-
+                                </form>
+                           
                     </div>
                 </div>
             </div>

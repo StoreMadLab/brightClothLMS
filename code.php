@@ -51,11 +51,11 @@ if(isset($_POST['update_customer']))
 
 if(isset($_POST['save_customer']))
 {
-    $name = mysqli_real_escape_string($con, $_POST['C_name']);
-    $phone = mysqli_real_escape_string($con, $_POST['Ph_no']);
-    $address = mysqli_real_escape_string($con, $_POST['Address']);
+    $name = mysqli_real_escape_string($con, $_POST['name']);
+    $phone = mysqli_real_escape_string($con, $_POST['phone']);
+    $address = mysqli_real_escape_string($con, $_POST['address']);
 
-    $query = "INSERT INTO customer (name,phone,address) VALUES ('$name','$phone','$address')";
+    $query = "INSERT INTO customer (C_name, Ph_no, Address) VALUES ('$name','$phone','$address')";
 
     $query_run = mysqli_query($con, $query);
     if($query_run)

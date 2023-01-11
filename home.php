@@ -57,11 +57,16 @@ require 'dbcon.php';
         <div class="sidebar">
             <div class="sidebar_inner">
                 <ul>
-
+                <li>
+                        <a href="l_home.php">
+                            <span class="icon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                            <span class="text"><strong>Home</strong></span>
+                        </a>
+                    </li>
                     <li>
                         <a href="home.php">
                             <span class="icon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                            <span class="text"><strong>Home</strong></span>
+                            <span class="text"><strong>Customer Details</strong></span>
                         </a>
                     </li>
                     <li>
@@ -139,22 +144,10 @@ require 'dbcon.php';
                     </div>
                     <div class="box-body">
                         <!-- Start creating your amazing application! -->
-                        <button id="newLaundry" type="button" class="btn btn-success btn-sm">
+                        <button id="newLaundry" name type="button" class="btn btn-success btn-sm"><a href="customer-new-create.php">New
+                                Customer
+                            </a>
 
-                        <?php
-                                        $query = "SELECT C_id FROM customer";
-                                        $query_run = mysqli_query($con, $query);
-
-                        if (mysqli_num_rows($query_run) > 0 ) {
-                            foreach ($query_run as $customer) {
-                                ?>
-                            <a href="customer-new-create.php?id=>"
-                                class="btn-success btn-sm">New Customer</a>
-                                        <?php
-                            }
-                        }
-                                        ?>    
-                                        
                             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                         </button>
                         <div id="table-laundry">
@@ -192,13 +185,13 @@ require 'dbcon.php';
                                                             class="btn btn-info btn-sm">View</a>
                                                         <a href="customer-create.php?id=<?= $customer['C_id']; ?>"
                                                             class="btn btn-success btn-sm">Edit</a>
-                                                        <!-- <form action="claim.php" method="POST" class="d-inline">
-                                                                    <button type="submit" name="delete_customer"
-                                                                        value="<?= $customer['C_id']; ?>"
-                                                                        class="btn-primary btn-sm">Claim
-                                                                    <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
-                                                                </button> -->
-                                                        </form>
+                                                            <form action="claim.php" method="POST" class="d-inline">
+                                                            <button type="submit" name="delete_customer"
+                                                                value="<?= $customer['C_id']; ?>"
+                                                                class="btn-primary btn-sm">Claim
+                                                            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                                                        </button>
+                                            </form>
                                                         <form action="code.php" method="POST" class="d-inline">
                                                             <button type="submit" name="delete_customer"
                                                                 value="<?= $customer['C_id']; ?>"
