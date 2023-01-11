@@ -144,7 +144,7 @@ require 'dbcon.php';
                             <a href="customer-create.php?id=<?= $customer['C_id']; ?>" class="btn-success btn-sm">New
                                 Type
                             </a>
-
+                            
                             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                         </button>
                         <div id="table-laundry">

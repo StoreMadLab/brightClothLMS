@@ -42,7 +42,7 @@ require 'dbcon.php';
                             if (mysqli_num_rows($query_run) > 0) {
                                 $customer = mysqli_fetch_array($query_run);
                                 ?>
-                                <form action="code.php" method="POST">
+                                 <form action="code.php" method="POST">
                                     <input type="hidden" name="customer_id" value="<?= $customer['C_id']; ?>">
 
                                     <div class="mb-3">
