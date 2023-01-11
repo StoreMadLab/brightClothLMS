@@ -1,7 +1,6 @@
 <?php
 session_start();
 require 'dbcon.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +10,6 @@ require 'dbcon.php';
     <meta charset="UTF-8">
     <title>LMS-Login</title>
     <link rel="stylesheet" href="css/styles.css">
-    
 
 </head>
 
