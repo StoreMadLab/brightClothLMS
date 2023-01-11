@@ -202,7 +202,7 @@ require 'dbcon.php';
                                                         </button>
                                             </form>
                                                         <form action="code.php" method="POST" class="d-inline">
-                                                            <button type="submit" name="delete_customer"
+                                                            <button type="submit" name="delete_cla"
                                                                 value="<?= $customer['C_id']; ?>"
                                                                 class="btn-danger btn-sm">Delete</button>
                                                         </form>

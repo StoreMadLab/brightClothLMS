@@ -121,4 +121,24 @@ if(isset($_POST['save_laundry']))
     }
 }
 
+if(isset($_POST['delete_cla']))
+{
+    $customer_id = mysqli_real_escape_string($con, $_POST['delete_cla']);
+
+    $query = "DELETE FROM sales WHERE C_id='$customer_id' ";
+    $query_run = mysqli_query($con, $query);
+
+    if($query_run)
+    {
+        $_SESSION['message'] = "Customer Deleted Successfully";
+        header("Location: l_home.php");
+        exit(0);
+    }
+    else
+    {
+        $_SESSION['message'] = "Customer Not Deleted";
+        header("Location: l_home.php");
+        exit(0);
+    }
+}
 ?>
