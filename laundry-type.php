@@ -147,7 +147,7 @@ require 'dbcon.php';
                         <!-- Start creating your amazing application! -->
                         <button id="newLaundry" type="button" class="btn btn-success btn-sm">
 
-                            <a href="customer-create.php?id=<?= $customer['C_id']; ?>" class="btn-success btn-sm">New
+                            <a href="l_type_create.php" class="btn-success btn-sm">New
                                 Type
                             </a>
                             
