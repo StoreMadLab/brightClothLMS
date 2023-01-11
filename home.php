@@ -186,7 +186,7 @@ require 'dbcon.php';
                                                         <a href="customer-create.php?id=<?= $customer['C_id']; ?>"
                                                             class="btn btn-success btn-sm">Edit</a>
                                                             <form action="claim.php" method="POST" class="d-inline">
-                                                            <button type="submit" name="delete_customer"
+                                                            <button type="submit" name="claim_customer"
                                                                 value="<?= $customer['C_id']; ?>"
                                                                 class="btn-primary btn-sm">Claim
                                                             <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
