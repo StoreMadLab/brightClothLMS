@@ -169,7 +169,7 @@ require 'dbcon.php';
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $query = "SELECT * FROM customer";
+                                        $query = "SELECT c.C_id, c.C_name, l.l_type_desc, s.qty, s.date_rcv, s.amount  FROM customer c, sales s, l_type l WHERE c.C_id = s.c_id AND l.l_type_id = s.i_type_id";
                                         $query_run = mysqli_query($con, $query);
 
                                         if (mysqli_num_rows($query_run) > 0) {
@@ -180,11 +180,11 @@ require 'dbcon.php';
                                                     <td>
                                                         <?= $customer['C_name']; ?>
                                                     </td>
-                                                    <td><?= $customer['Ph_no']; ?></td>
-                                                    <td><?= $customer['Ph_no']; ?></td>
-                                                    <td><?= $customer['Ph_no']; ?></td>
+                                                    <td><?= $customer['l_type_desc']; ?></td>
+                                                    <td><?= $customer['qty']; ?></td>
+                                                    <td><?= $customer['date_rcv']; ?></td>
                                                     <td>
-                                                        <?= $customer['Address']; ?>
+                                                        <?= $customer['amount']; ?>
                                                     </td>
                                                     <td>
                                                         <a href="customer-view.php?id=<?= $customer['C_id']; ?>"
