@@ -169,7 +169,7 @@ require 'dbcon.php';
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $query = "SELECT c.C_id, c.C_name, l.l_type_desc, s.qty, s.date_rcv, s.amount  FROM customer c, sales s, l_type l WHERE c.C_id = s.c_id AND l.l_type_id = s.i_type_id";
+                                        $query = "SELECT c.C_id, c.C_name, l.l_type_desc, s.qty, s.date_rcv, (l.l_type_price*s.qty)as amount  FROM customer c, sales s, l_type l WHERE c.C_id = s.c_id AND l.l_type_id = s.l_type_id";
                                         $query_run = mysqli_query($con, $query);
 
                                         if (mysqli_num_rows($query_run) > 0) {
