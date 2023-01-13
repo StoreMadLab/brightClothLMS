@@ -146,8 +146,10 @@ require 'dbcon.php';
                             <div class="box-body">
               <!-- Start creating your amazing application! -->
               Daily Sales:
-              <input id="dailySale" type="date" class="btn btn-default btn-sm" value="<?= date('Y-m-d'); ?>">
-              
+              <form name="dated" action="report.php?value=2002-09-14"  method="GET" >
+              <input id="pdate" type="date" name="pdate" class="btn btn-default btn-sm" >
+              <input type="submit" value="submit">
+              </form>
               <div id="printBut" class="pull-right">
                   <button id="print-button" type="button" class="btn btn-success btn-sm">
                   PRINT
@@ -166,7 +168,8 @@ require 'dbcon.php';
                                     </thead>
                                     <tbody>
                                     <?php
-                                        $query = "SELECT * FROM REPO ";
+                                        $dd = $_GET['pdate'];
+                                        $query = "CALL procrepo('$dd')";
                                         $query_run = mysqli_query($con, $query);
 
                                         if (mysqli_num_rows($query_run) > 0) {
