@@ -166,7 +166,7 @@ require 'dbcon.php';
                                     </thead>
                                     <tbody>
                                     <?php
-                                        $query = "SELECT * FROM customer";
+                                        $query = "SELECT * FROM REPO ";
                                         $query_run = mysqli_query($con, $query);
 
                                         if (mysqli_num_rows($query_run) > 0) {
@@ -175,16 +175,16 @@ require 'dbcon.php';
                                                 <tr>
                                                     <td><?= $customer['C_name']; ?></td>
                                                     <td>
-                                                        <?= $customer['l_type']; ?>
+                                                        <?= $customer['l_type_desc']; ?>
                                                     </td>
-                                                    <td><?= $customer['rcv_date']; ?></td>
+                                                    <td><?= $customer['date_rcv']; ?></td>
                                                     <td>
                                                         <?= $customer['p_date']; ?>
                                                     </td>
                                                     <td>
                                                         <?= $customer['amount']; ?>
                                                     </td>
-                                                    <td>
+                                                   <!-- <td>
                                                         <a href="customer-create.php?id=<?= $customer['C_id']; ?>"
                                                             class="btn btn-success btn-sm">Edit</a>
                                                             <form action="claim.php" method="POST" class="d-inline">
@@ -194,7 +194,7 @@ require 'dbcon.php';
                                                                 value="<?= $customer['C_id']; ?>"
                                                                 class="btn-danger btn-sm">Delete</button>
                                                         </form>
-                                                    </td>
+                                                    </td> -->
                                                 </tr>
                                                 <?php
                                             }
