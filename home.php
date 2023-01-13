@@ -183,8 +183,7 @@ require 'dbcon.php';
                                                     <td>
                                                         <a href="customer-create.php?id=<?= $customer['C_id']; ?>"
                                                             class="btn btn-success btn-sm">Edit</a>
-                                                            <form action="claim.php" method="POST" class="d-inline">
-                                            </form>
+                                                    
                                                         <form action="code.php" method="POST" class="d-inline">
                                                             <button type="submit" name="delete_customer"
                                                                 value="<?= $customer['C_id']; ?>"

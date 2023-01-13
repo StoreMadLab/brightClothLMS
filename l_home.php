@@ -169,7 +169,7 @@ require 'dbcon.php';
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $query = "select * from cla";
+                                        $query = "select * from clview";
                                         $query_run = mysqli_query($con, $query);
 
                                         if (mysqli_num_rows($query_run) > 0) {
@@ -195,11 +195,15 @@ require 'dbcon.php';
                                                                 class="btn-primary btn-sm">Claim
                                                             <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
                                                         </button> -->
-                                                        <button type="submit" name="delete_customer"
-                                                                value="<?= $customer['C_id']; ?>"
+                                                       <!-- <form action="code.php" method="POST" class="d-inline" ></form>
+                                                        <button type="submit" name="claim_customer"
+                                                                value="<?= $customer['S_id']; ?>"
                                                                 class="btn-primary btn-sm">Claim
                                                             <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
                                                         </button>
+                                                        </form> -->
+                                                        <a href="claim.php?id=<?= $customer['S_id']; ?>"
+                                                            class="btn btn-success btn-sm">Claim</a>
                                             </form>
                                                         <form action="code.php" method="POST" class="d-inline">
                                                             <button type="submit" name="delete_cla"

@@ -1,101 +1,72 @@
 <?php
 session_start();
 require 'dbcon.php';
-
-if(isset($_POST['delete_customer']))
-{
-    $customer_id = mysqli_real_escape_string($con, $_POST['delete_customer']);
-
-    $query = "DELETE FROM customer WHERE C_id='$customer_id' ";
-    $query_run = mysqli_query($con, $query);
-
-    if($query_run)
-    {
-        $_SESSION['message'] = "Customer Deleted Successfully";
-        header("Location: home.php");
-        exit(0);
-    }
-    else
-    {
-        $_SESSION['message'] = "Customer Not Deleted";
-        header("Location: home.php");
-        exit(0);
-    }
-}
-
-if(isset($_POST['update_customer']))
-{
-    $id = mysqli_real_escape_string($con, $_POST['customer_id']);
-    $name = mysqli_real_escape_string($con, $_POST['name']);
-    $phone = mysqli_real_escape_string($con, $_POST['phone']);
-    $address = mysqli_real_escape_string($con, $_POST['address']);
-
-    $query = "UPDATE customer SET C_name='$name', Ph_no='$phone', Address='$address' WHERE C_id='$id' ";
-    $query_run = mysqli_query($con, $query);
-
-    if($query_run)
-    {
-        $_SESSION['message'] = "Customer Updated Successfully";
-        header("Location: customer-create.php");
-        exit(0);
-    }
-    else
-    {
-        $_SESSION['message'] = "Customer Not Updated";
-        header("Location: customer-create.php");
-        exit(0);
-    }
-
-}
-
-
-if(isset($_POST['save_customer']))
-{
-    $name = mysqli_real_escape_string($con, $_POST['C_name']);
-    $phone = mysqli_real_escape_string($con, $_POST['Ph_no']);
-    $address = mysqli_real_escape_string($con, $_POST['Address']);
-
-    $query = "INSERT INTO customer (name,phone,address) VALUES ('$name','$phone','$address')";
-
-    $query_run = mysqli_query($con, $query);
-    if($query_run)
-    {
-        $_SESSION['message'] = "Customer Created Successfully";
-        header("Location: customer-create.php");
-        exit(0);
-    }
-    else
-    {
-        $_SESSION['message'] = "Customer Not Created";
-        header("Location: customer-create.php");
-        exit(0);
-    }
-}
-
-
-if(isset($_POST['claim_customer']))
-{
-    $customer_id = mysqli_real_escape_string($con, $_POST['delete_customer']);
-
-
-
-
-    
-    $query = "DELETE FROM customer WHERE C_id='$customer_id' ";
-    $query_run = mysqli_query($con, $query);
-
-    if($query_run)
-    {
-        $_SESSION['message'] = "Customer Claimed Successfully";
-        header("Location: home.php");
-        exit(0);
-    }
-    else
-    {
-        $_SESSION['message'] = "Customer Not Claimed";
-        header("Location: home.php");
-        exit(0);
-    }
-}
-
 ?>
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Customer Edit</title>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+
+        <?php include('message.php'); ?>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Customer Edit
+                            <a href="l_home.php" class="btn btn-danger float-end">BACK</a>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+
+                        <?php
+                        if (isset($_GET['id'])) {
+                            $sales_id = mysqli_real_escape_string($con, $_GET['id']);
+                            $query = "SELECT * FROM sales WHERE S_id='$sales_id' ";
+                            $query_run = mysqli_query($con, $query);
+
+                            if (mysqli_num_rows($query_run) > 0) {
+                                $sale = mysqli_fetch_array($query_run);
+                                ?>
+                                 <form action="code.php" method="POST">
+                                    <input type="hidden" name="sales_id" value="<?= $sale['S_id']; ?>">
+                                    <div class="mb-3">
+                                        <label>date accepted</label>
+                                        <input type="date" name="date"  class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <button type="submit" name="claim_customer" class="btn btn-primary">
+                                            Update customer
+                                        </button>
+                                    </div>
+                                </form>
+                                <?php
+                            } else {
+                                echo "<h4>No Such Id Found</h4>";
+                            }
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

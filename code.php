@@ -138,6 +138,23 @@ if (isset($_POST['created_laundry_type'])) {
 }
 
 
+if (isset($_POST['claim_customer'])) {
+    $sales_id = mysqli_real_escape_string($con, $_POST['sales_id']);
+    $p_date = mysqli_real_escape_string($con, $_POST['date']);
+    $query1 = "INSERT INTO report (S_id, p_date) VALUES ('$sales_id','$p_date') ";
+    $query2 = "DELETE FROM sales WHERE S_id='$sales_id'";
+    $query_run = mysqli_query($con, $query1);
+    $query_run1 = mysqli_query($con, $query2);
 
+    if ($query_run) {
+        $_SESSION['message'] = "Customer claimed Successfully";
+        header("Location: l_home.php");
+        exit(0);
+    } else {
+        $_SESSION['message'] = "Customer Not claimed";
+        header("Location: l_home.php");
+        exit(0);
+    }
 
+}
 ?>

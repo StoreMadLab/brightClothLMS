@@ -165,23 +165,35 @@ require 'dbcon.php';
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
-                                        $query = "SELECT * FROM l_type";
+                                    <?php
+                                        $query = "SELECT * FROM customer";
                                         $query_run = mysqli_query($con, $query);
 
                                         if (mysqli_num_rows($query_run) > 0) {
                                             foreach ($query_run as $customer) {
                                                 ?>
                                                 <tr>
-                                                    <!-- <td><?= $customer['l_type_id']; ?></td> -->
+                                                    <td><?= $customer['C_name']; ?></td>
                                                     <td>
-                                                        <?= $customer['l_type_desc']; ?>
+                                                        <?= $customer['l_type']; ?>
                                                     </td>
-                                                    <td><?= $customer['l_type_price']; ?></td>
-                                                    
-                                                    <td>                                                        
-                                                        <a href="l_create.php?id=<?= $customer['l_type_id']; ?>"
-                                                            class="btn btn-success btn-sm">Edit</a>                                                            
+                                                    <td><?= $customer['rcv_date']; ?></td>
+                                                    <td>
+                                                        <?= $customer['p_date']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $customer['amount']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <a href="customer-create.php?id=<?= $customer['C_id']; ?>"
+                                                            class="btn btn-success btn-sm">Edit</a>
+                                                            <form action="claim.php" method="POST" class="d-inline">
+                                            </form>
+                                                        <form action="code.php" method="POST" class="d-inline">
+                                                            <button type="submit" name="delete_customer"
+                                                                value="<?= $customer['C_id']; ?>"
+                                                                class="btn-danger btn-sm">Delete</button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                                 <?php
