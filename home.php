@@ -77,7 +77,7 @@ require 'dbcon.php';
                     </li>
                     <li>
                         <a href="report.php">
-                            <span class="icon"><i class="fa fa-industry" aria-hidden="true"></i></span>
+                            <span class="icon"><i class="fa fa-book" aria-hidden="true"></i></span>
                             <span class="text"><strong>Report</strong></span>
                         </a>
                     </li>
