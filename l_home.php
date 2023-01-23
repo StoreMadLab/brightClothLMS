@@ -60,7 +60,7 @@ require 'dbcon.php';
 
                     <li>
                         <a href="l_home.php">
-                            <span class="icon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                            <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
                             <span class="text"><strong>Home</strong></span>
                         </a>
                         <a href="home.php">
