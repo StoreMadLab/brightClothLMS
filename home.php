@@ -144,7 +144,7 @@ require 'dbcon.php';
                     </div>
                     <div class="box-body">
                         <!-- Start creating your amazing application! -->
-                        <button id="newLaundry" name type="button" class="btn btn-success btn-sm"><a href="customer-new-create.php">New
+                        <button id="newLaundry" name type="button" class="btn btn-success btn-sm"><a href="customer-new-create.php"style="color:white;">New
                                 Customer
                             </a>
 
