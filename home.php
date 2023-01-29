@@ -54,37 +54,37 @@ require 'dbcon.php';
         </div>
 
         <!-- Sidebar -->
-        <div class="sidebar">
+        <div class="sidebar" style="width:25rem";>
             <div class="sidebar_inner">
                 <ul>
                 <li>
                         <a href="l_home.php">
                             <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
-                            <span class="text"><strong>Home</strong></span>
+                            <span class="text"><strong style="font-size: 15px;">Home</strong></span>
                         </a>
                     </li>
                     <li>
                         <a href="home.php">
                             <span class="icon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                            <span class="text"><strong>Customer Details</strong></span>
+                            <span class="text"><strong style="font-size: 15px;">Customer Details</strong></span>
                         </a>
                     </li>
                     <li>
                         <a href="laundry-type.php">
                             <span class="icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
-                            <span class="text"><strong>Laundry Type</strong></span>
+                            <span class="text"><strong style="font-size: 15px;">Laundry Type</strong></span>
                         </a>
                     </li>
                     <li>
                         <a href="report.php">
                             <span class="icon"><i class="fa fa-book" aria-hidden="true"></i></span>
-                            <span class="text"><strong>Report</strong></span>
+                            <span class="text"><strong style="font-size: 15px;">Report</strong></span>
                         </a>
                     </li>
                     <li>
                         <a href="logout.php">
                             <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
-                            <span class="text"><strong>Logout</strong></span>
+                            <span class="text"><strong style="font-size: 15px;">Logout</strong></span>
                         </a>
                     </li>
                 </ul>
