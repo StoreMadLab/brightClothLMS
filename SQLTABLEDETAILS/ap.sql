@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2023 at 11:45 AM
+-- Generation Time: Aug 29, 2023 at 07:54 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -26,15 +26,11 @@ DELIMITER $$
 -- Procedures
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `procrepo` (IN `del_date` DATE)   BEGIN
-SELECT C_name, l_type_desc, date_rcv, p_date, amount
+SELECT c.C_name, l.l_type_desc, b.date_rcv, r.p_date, (l.l_type_price * b.qty)AS amount
 FROM customer c, l_type l, b_sales b, report r
 WHERE c.C_id=b.c_id AND b.l_type_id=l.l_type_id AND b.S_id=r.S_id AND
 r.p_date=del_date;
 
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `prorepo` (IN `f_date` DATE)   BEGIN
-SELECT * FROM repo WHERE p_date=f_date;
 END$$
 
 DELIMITER ;
@@ -50,7 +46,7 @@ CREATE TABLE `b_sales` (
   `l_type_id` int(11) NOT NULL,
   `c_id` int(11) NOT NULL,
   `qty` int(11) NOT NULL,
-  `date_rcv` int(11) NOT NULL,
+  `date_rcv` date NOT NULL,
   `amount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -59,9 +55,12 @@ CREATE TABLE `b_sales` (
 --
 
 INSERT INTO `b_sales` (`S_id`, `l_type_id`, `c_id`, `qty`, `date_rcv`, `amount`) VALUES
-(22, 2, 5, 5, 20230113, 0),
-(23, 2, 5, 5, 20230114, 0),
-(24, 2, 3, 5, 20230112, 0);
+(22, 2, 5, 5, '2023-01-13', 0),
+(23, 2, 5, 5, '2023-01-14', 0),
+(24, 2, 3, 5, '2023-01-12', 0),
+(25, 1, 7, 5, '2023-01-13', 0),
+(26, 2, 8, 5, '2023-01-14', 0),
+(27, 2, 3, 5, '2023-01-23', 0);
 
 -- --------------------------------------------------------
 
@@ -112,9 +111,11 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`C_id`, `C_name`, `Ph_no`, `Address`) VALUES
-(3, 'atr', 54845, 'mlore'),
-(5, 'ghwf', 54845, 'mlore'),
-(6, 'ghwffa', 54845, 'ffafe');
+(3, 'naruto', 54845, 'mlore'),
+(5, 'Senku Ishigami', 54845, 'mlore'),
+(7, 'Kohaku', 57867, 'mlore'),
+(8, 'Chrome', 78464, 'mlore'),
+(9, 'Taiju Oki', 8875441, 'japana');
 
 -- --------------------------------------------------------
 
@@ -145,7 +146,7 @@ INSERT INTO `l_type` (`l_type_id`, `l_type_desc`, `l_type_price`) VALUES
 CREATE TABLE `repo` (
 `C_name` varchar(15)
 ,`l_type_desc` varchar(50)
-,`date_rcv` int(11)
+,`date_rcv` date
 ,`p_date` date
 ,`amount` double
 );
@@ -171,7 +172,10 @@ INSERT INTO `report` (`R_id`, `S_id`, `p_date`) VALUES
 (5, 20, '2023-01-15'),
 (6, 22, '2023-01-14'),
 (7, 23, '2023-01-14'),
-(8, 24, '2023-01-13');
+(8, 24, '2023-01-13'),
+(9, 25, '2023-01-14'),
+(10, 26, '2023-01-15'),
+(11, 27, '2023-01-29');
 
 -- --------------------------------------------------------
 
@@ -189,6 +193,15 @@ CREATE TABLE `sales` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `sales`
+--
+
+INSERT INTO `sales` (`S_id`, `l_type_id`, `c_id`, `qty`, `date_rcv`, `amount`) VALUES
+(28, 1, 5, 4, '2023-01-22', 0),
+(30, 2, 8, 6, '2023-01-23', 0),
+(31, 2, 7, 4, '2023-01-23', 0);
+
+--
 -- Triggers `sales`
 --
 DELIMITER $$
@@ -203,7 +216,6 @@ DELIMITER ;
 --
 
 CREATE TABLE `user` (
-  `u_id` int(11) NOT NULL,
   `user_name` varchar(15) NOT NULL,
   `u_pwd` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -212,9 +224,8 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`u_id`, `user_name`, `u_pwd`) VALUES
-(1, 'admin', 'admin'),
-(2, 'admin', 'admin');
+INSERT INTO `user` (`user_name`, `u_pwd`) VALUES
+('admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -252,8 +263,8 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 ALTER TABLE `b_sales`
   ADD PRIMARY KEY (`S_id`),
-  ADD KEY `c_id` (`c_id`),
-  ADD KEY `l_type_id` (`l_type_id`);
+  ADD KEY `b_sales_ibfk_1` (`c_id`),
+  ADD KEY `b_sales_ibfk_2` (`l_type_id`);
 
 --
 -- Indexes for table `customer`
@@ -278,14 +289,14 @@ ALTER TABLE `report`
 --
 ALTER TABLE `sales`
   ADD PRIMARY KEY (`S_id`),
-  ADD KEY `c_id` (`c_id`),
-  ADD KEY `i_type_id` (`l_type_id`);
+  ADD KEY `sales_ibfk_1` (`c_id`),
+  ADD KEY `sales_ibfk_2` (`l_type_id`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`u_id`);
+  ADD PRIMARY KEY (`user_name`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -295,7 +306,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `C_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `C_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `l_type`
@@ -307,19 +318,13 @@ ALTER TABLE `l_type`
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `R_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `R_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `S_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `S_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- Constraints for dumped tables
@@ -329,15 +334,15 @@ ALTER TABLE `user`
 -- Constraints for table `b_sales`
 --
 ALTER TABLE `b_sales`
-  ADD CONSTRAINT `b_sales_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `customer` (`C_id`),
-  ADD CONSTRAINT `b_sales_ibfk_2` FOREIGN KEY (`l_type_id`) REFERENCES `l_type` (`l_type_id`);
+  ADD CONSTRAINT `b_sales_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `customer` (`C_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `b_sales_ibfk_2` FOREIGN KEY (`l_type_id`) REFERENCES `l_type` (`l_type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `sales`
 --
 ALTER TABLE `sales`
-  ADD CONSTRAINT `sales_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `customer` (`C_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `sales_ibfk_2` FOREIGN KEY (`l_type_id`) REFERENCES `l_type` (`l_type_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `sales_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `customer` (`C_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `sales_ibfk_2` FOREIGN KEY (`l_type_id`) REFERENCES `l_type` (`l_type_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
