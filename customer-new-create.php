@@ -41,7 +41,7 @@ require 'dbcon.php';
                                     </div>
                                     <div class="mb-3">
                                         <label>Customer Phone</label>
-                                        <input type="text" name="phone" class="form-control">
+                                        <input type="tel" name="phone" class="form-control">
                                     </div>
                                     <div class="mb-3">
                                         <label>Customer Address</label>
